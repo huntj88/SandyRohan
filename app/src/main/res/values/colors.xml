@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#393E46</color>
+    <color name="colorPrimaryDark">#222831</color>
+    <color name="colorAccent">#0092CA</color>
+    <color name="colorAccentLight">#EEEEEE</color>
+    co
+
+    <!--<color name="white">#ffffff</color>-->
+
+
+    <color name="money_gold">#dddd00</color>
+    <color name="money_silver">#dadada</color>
+    <color name="money_bronze">#945900</color>
+
+
+
+    <color name="green_percent">#0fae00</color>
+    <color name="red_percent">#be0905</color>
+
 </resources>

@@ -1,5 +1,6 @@
 package hunt.james.sandyrohan.pages.util
 
+import hunt.james.sandyrohan.pages.ItemPage
 import hunt.james.sandyrohan.pages.OtherPage
 import hunt.james.sandyrohan.pages.TestPage
 
@@ -15,6 +16,11 @@ enum class PageID(val pageID: Int) : PageBuilder {
     OTHER(1) {
         override fun build(): PageRequired {
             return OtherPage()
+        }
+    },
+    ITEM(2) {
+        override fun build(): PageRequired {
+            return ItemPage()
         }
     }
 }

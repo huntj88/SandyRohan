@@ -27,7 +27,7 @@ class OtherPage: PageRequired {
         val text: TextView = TextView(context)
         text.text = "hello"
         text.setTextSize(TypedValue.COMPLEX_UNIT_SP,30f)
-        text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+        text.setTextColor(ContextCompat.getColor(context, R.color.colorAccentLight))
         linearLayout.addView(text)
 
         mViewGroup = linearLayout

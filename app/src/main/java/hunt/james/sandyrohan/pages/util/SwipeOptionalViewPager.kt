@@ -28,4 +28,6 @@ class SwipeOptionalViewPager(context: Context, attr: AttributeSet): ViewPager(co
             return false
         }
     }
+
+
 }
