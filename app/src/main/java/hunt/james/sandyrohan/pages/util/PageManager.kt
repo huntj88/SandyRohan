@@ -1,17 +1,18 @@
 package hunt.james.sandyrohan.pages.util
 
 import android.support.v4.view.ViewPager
-import android.util.Log
 import com.jakewharton.rxbinding2.support.v4.view.RxViewPager
+import hunt.james.sandyrohan.toolbar.ToolbarController
 import io.reactivex.disposables.Disposable
 
 /**
  * Created by James on 7/8/2017.
  */
 
-class PageManager(viewPager: SwipeOptionalViewPager) : PageAdapter.PageAddedListener {
+class PageManager(viewPager: SwipeOptionalViewPager, toolbar: ToolbarController) : PageAddedListener {
 
     var mViewPager: SwipeOptionalViewPager = viewPager
+    var mToolbar: ToolbarController = toolbar
 
     var mPageAdapter: PageAdapter = PageAdapter(this)
 
@@ -25,19 +26,24 @@ class PageManager(viewPager: SwipeOptionalViewPager) : PageAdapter.PageAddedList
         scrollStateDisposable = RxViewPager.pageScrollStateChanges(mViewPager).subscribe({ e ->
             if (e == ViewPager.SCROLL_STATE_IDLE) {
                 mViewPager.adapter = mPageAdapter
-                mViewPager.currentItem = mPageAdapter.count-1
+                mViewPager.currentItem = mPageAdapter.count - 1
 
             }
         })
     }
 
-    override fun pageAdded(indexToGoTo: Int) {
+    override fun pageAdded(indexToGoTo: Int, pageID: PageID) {
         mViewPager.setCurrentItem(indexToGoTo, true)
+        mToolbar.buildToolbarForPage(pageID)
+
     }
 
     fun backPressed(): Boolean {
         val backNotEmpty: Boolean = mViewPager.backPressed(mPageAdapter.backPressed()) //singlePageAdapter.backPressed() returns indexToGoTo
         mPageAdapter.removePageFromStack()
+
+        if(backNotEmpty)
+            mToolbar.buildToolbarForPage(mPageAdapter.getVisiblePageID())
 
         return backNotEmpty
     }

@@ -9,14 +9,23 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
+        style="@style/ToolbarLook"
+        app:popupTheme="@style/ToolbarPopup"
         android:id="@+id/toolbar">
+
+        <FrameLayout
+            android:id="@+id/inner_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
 
 
     </android.support.v7.widget.Toolbar>
 
     <hunt.james.sandyrohan.pages.util.SwipeOptionalViewPager
         android:id="@+id/single_view_pager"
+        android:background="@color/colorPrimary"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="0dp"

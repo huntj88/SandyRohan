@@ -1,7 +1,6 @@
 package hunt.james.sandyrohan.pages.util
 
 import android.support.v4.view.PagerAdapter
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import java.util.*
@@ -21,7 +20,7 @@ class PageAdapter(var listener: PageAddedListener) : PagerAdapter(), PageRequire
     fun addPage(page: PageRequired) {
         pages.add(page)
         notifyDataSetChanged()
-        listener.pageAdded(pages.size-1)
+        listener.pageAdded(pages.size - 1, page.mPageID)
     }
 
     override fun addPage(pageID: PageID) {
@@ -31,6 +30,10 @@ class PageAdapter(var listener: PageAddedListener) : PagerAdapter(), PageRequire
     fun removePageFromStack() {
         pages.pop()
         notifyDataSetChanged()
+    }
+
+    fun getVisiblePageID(): PageID {
+        return pages.peek().mPageID
     }
 
     fun backPressed(): Int {   //tells you the index of the page you are going to
@@ -54,10 +57,5 @@ class PageAdapter(var listener: PageAddedListener) : PagerAdapter(), PageRequire
         pages[position].bindLayout(collection.context, this)
         collection.addView(pages[position].mViewGroup)
         return pages[position].mViewGroup
-    }
-
-
-    interface PageAddedListener {
-        fun pageAdded(indexToGoTo: Int)
     }
 }

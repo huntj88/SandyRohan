@@ -7,7 +7,10 @@ import com.jakewharton.rxbinding2.view.RxView
 import hunt.james.sandyrohan.pages.util.PageRequired
 import hunt.james.sandyrohan.R
 import hunt.james.sandyrohan.pages.util.PageID
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.page_test.view.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by James on 7/8/2017.
@@ -24,8 +27,12 @@ class TestPage : PageRequired {
         val layout = LayoutInflater.from(context).inflate(R.layout.page_test, null, false)
 
 
-        RxView.clicks(layout.button).subscribe({adapter.addPage(PageID.OTHER)})
-        RxView.clicks(layout.button2).subscribe({adapter.addPage(PageID.ITEM)})
+        RxView.clicks(layout.button)
+                .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .subscribe({adapter.addPage(PageID.OTHER)})
+        RxView.clicks(layout.button2)
+                .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .subscribe({adapter.addPage(PageID.ITEM)})
 
         mViewGroup = layout as ViewGroup
     }
