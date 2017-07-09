@@ -24,4 +24,9 @@ class SingleActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        pageManager.onDestroy()
+    }
 }
