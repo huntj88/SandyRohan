@@ -6,35 +6,15 @@
     android:layout_height="match_parent"
     tools:context="hunt.james.sandyrohan.SingleActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        style="@style/ToolbarLook"
-        app:popupTheme="@style/ToolbarPopup"
-        android:id="@+id/toolbar">
-
-        <FrameLayout
-            android:id="@+id/inner_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
-
-
-    </android.support.v7.widget.Toolbar>
-
     <hunt.james.sandyrohan.pages.util.SwipeOptionalViewPager
         android:id="@+id/single_view_pager"
         android:background="@color/colorPrimary"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="0dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp" />
 
 </android.support.constraint.ConstraintLayout>

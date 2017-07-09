@@ -2,17 +2,15 @@ package hunt.james.sandyrohan.pages.util
 
 import android.support.v4.view.ViewPager
 import com.jakewharton.rxbinding2.support.v4.view.RxViewPager
-import hunt.james.sandyrohan.toolbar.ToolbarController
 import io.reactivex.disposables.Disposable
 
 /**
  * Created by James on 7/8/2017.
  */
 
-class PageManager(viewPager: SwipeOptionalViewPager, toolbar: ToolbarController) : PageAddedListener {
+class PageManager(viewPager: SwipeOptionalViewPager) : PageAddedListener {
 
     var mViewPager: SwipeOptionalViewPager = viewPager
-    var mToolbar: ToolbarController = toolbar
 
     var mPageAdapter: PageAdapter = PageAdapter(this)
 
@@ -34,16 +32,12 @@ class PageManager(viewPager: SwipeOptionalViewPager, toolbar: ToolbarController)
 
     override fun pageAdded(indexToGoTo: Int, pageID: PageID) {
         mViewPager.setCurrentItem(indexToGoTo, true)
-        mToolbar.buildToolbarForPage(pageID)
 
     }
 
     fun backPressed(): Boolean {
         val backNotEmpty: Boolean = mViewPager.backPressed(mPageAdapter.backPressed()) //singlePageAdapter.backPressed() returns indexToGoTo
         mPageAdapter.removePageFromStack()
-
-        if(backNotEmpty)
-            mToolbar.buildToolbarForPage(mPageAdapter.getVisiblePageID())
 
         return backNotEmpty
     }
