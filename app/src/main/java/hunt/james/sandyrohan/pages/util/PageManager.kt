@@ -24,6 +24,8 @@ class PageManager(viewPager: SwipeOptionalViewPager): PageAdapter.PageAddedListe
         val backNotEmpty:Boolean = mViewPager.backPressed(mPageAdapter.backPressed()) //singlePageAdapter.backPressed() returns indexToGoTo
         mPageAdapter.removePageFromStack()
 
+        mViewPager.adapter = mPageAdapter
+
         return backNotEmpty
     }
 
