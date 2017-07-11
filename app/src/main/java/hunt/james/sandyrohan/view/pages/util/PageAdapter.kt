@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.pages.util
+package hunt.james.sandyrohan.view.pages.util
 
 import android.support.v4.view.PagerAdapter
 import android.view.View
@@ -18,7 +18,7 @@ class PageAdapter(var listener: PageAddedListener) : PagerAdapter(), PageRequire
     }
 
     fun addPage(page: PageRequired) {
-        pages.add(page)
+        pages.push(page)
         notifyDataSetChanged()
         listener.pageAdded(pages.size - 1, page.mPageID)
     }

@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.pages.util
+package hunt.james.sandyrohan.view.pages.util
 
 /**
  * Created by James on 7/8/2017.

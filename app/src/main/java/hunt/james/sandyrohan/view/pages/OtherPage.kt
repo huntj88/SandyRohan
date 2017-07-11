@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.pages
+package hunt.james.sandyrohan.view.pages
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import hunt.james.sandyrohan.R
-import hunt.james.sandyrohan.pages.util.PageID
-import hunt.james.sandyrohan.pages.util.PageRequired
+import hunt.james.sandyrohan.view.pages.util.PageID
+import hunt.james.sandyrohan.view.pages.util.PageRequired
 
 /**
  * Created by James on 7/8/2017.

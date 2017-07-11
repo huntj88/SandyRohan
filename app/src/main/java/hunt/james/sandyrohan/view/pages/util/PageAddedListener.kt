@@ -1,6 +1,4 @@
-package hunt.james.sandyrohan.pages.util
-
-import hunt.james.sandyrohan.pages.util.PageID
+package hunt.james.sandyrohan.view.pages.util
 
 /**
  * Created by James on 7/9/2017.

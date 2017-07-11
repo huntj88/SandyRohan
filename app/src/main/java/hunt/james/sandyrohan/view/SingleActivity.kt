@@ -1,9 +1,10 @@
-package hunt.james.sandyrohan
+package hunt.james.sandyrohan.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import hunt.james.sandyrohan.pages.util.PageManager
-import hunt.james.sandyrohan.pages.util.SwipeOptionalViewPager
+import hunt.james.sandyrohan.R
+import hunt.james.sandyrohan.view.pages.util.PageManager
+import hunt.james.sandyrohan.view.pages.util.SwipeOptionalViewPager
 import kotlinx.android.synthetic.main.activity_single.*
 
 class SingleActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class SingleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_single)
 
         viewPager = single_view_pager
-        pageManager = PageManager(viewPager)
+        pageManager = PageManager(viewPager, toolbar_layout)
     }
 
     override fun onBackPressed() {

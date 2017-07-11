@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.pages.util
+package hunt.james.sandyrohan.view.pages.util
 
 import android.content.Context
 import android.support.v4.view.ViewPager

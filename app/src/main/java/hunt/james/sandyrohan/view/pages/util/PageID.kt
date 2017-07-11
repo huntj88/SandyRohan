@@ -1,9 +1,8 @@
-package hunt.james.sandyrohan.pages.util
+package hunt.james.sandyrohan.view.pages.util
 
-import hunt.james.sandyrohan.R
-import hunt.james.sandyrohan.pages.ItemPage
-import hunt.james.sandyrohan.pages.OtherPage
-import hunt.james.sandyrohan.pages.TestPage
+import hunt.james.sandyrohan.view.pages.ItemPage
+import hunt.james.sandyrohan.view.pages.OtherPage
+import hunt.james.sandyrohan.view.pages.TestPage
 
 /**
  * Created by James on 7/8/2017.

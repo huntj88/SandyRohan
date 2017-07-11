@@ -1,13 +1,12 @@
-package hunt.james.sandyrohan.pages
+package hunt.james.sandyrohan.view.pages
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jakewharton.rxbinding2.view.RxView
-import hunt.james.sandyrohan.pages.util.PageRequired
+import hunt.james.sandyrohan.view.pages.util.PageRequired
 import hunt.james.sandyrohan.R
-import hunt.james.sandyrohan.pages.util.PageID
-import io.reactivex.Scheduler
+import hunt.james.sandyrohan.view.pages.util.PageID
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.page_test.view.*
 import java.util.concurrent.TimeUnit

@@ -1,6 +1,7 @@
-package hunt.james.sandyrohan.pages.util
+package hunt.james.sandyrohan.view.pages.util
 
 import android.support.v4.view.ViewPager
+import android.widget.FrameLayout
 import com.jakewharton.rxbinding2.support.v4.view.RxViewPager
 import io.reactivex.disposables.Disposable
 
@@ -8,7 +9,7 @@ import io.reactivex.disposables.Disposable
  * Created by James on 7/8/2017.
  */
 
-class PageManager(viewPager: SwipeOptionalViewPager) : PageAddedListener {
+class PageManager(viewPager: SwipeOptionalViewPager, toolbarLayout: FrameLayout) : PageAddedListener {
 
     var mViewPager: SwipeOptionalViewPager = viewPager
 
