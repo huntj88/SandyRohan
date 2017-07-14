@@ -1,11 +1,15 @@
 package hunt.james.sandyrohan.view
 
+import android.Manifest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import hunt.james.sandyrohan.R
 import hunt.james.sandyrohan.view.pages.util.PageManager
 import hunt.james.sandyrohan.view.pages.util.SwipeOptionalViewPager
 import kotlinx.android.synthetic.main.activity_single.*
+import com.tbruyelle.rxpermissions2.RxPermissions
+
 
 class SingleActivity : AppCompatActivity() {
 
@@ -17,11 +21,22 @@ class SingleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_single)
 
         viewPager = single_view_pager
-        pageManager = PageManager(viewPager, toolbar_layout)
+
+        val rxPermissions = RxPermissions(this)
+
+        rxPermissions.request(Manifest.permission.INTERNET).subscribe { granted ->
+
+            if (granted) {
+                pageManager = PageManager(viewPager, toolbar_layout)
+            } else {
+                Log.d("granted","false")
+            }
+
+        }
     }
 
     override fun onBackPressed() {
-        if(!pageManager.backPressed()) {
+        if (!pageManager.backPressed()) {
             super.onBackPressed()
         }
     }
