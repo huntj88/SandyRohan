@@ -11,6 +11,7 @@ interface PageRequired {
     var mAdapter: Adapter
     var mPageID: PageID
     fun bindLayout(context: Context, adapter: Adapter)
+    fun bindDataFinished()
 
     interface Adapter{
         fun addPage(pageID: PageID)

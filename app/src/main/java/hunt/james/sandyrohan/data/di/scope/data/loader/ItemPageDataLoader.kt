@@ -12,8 +12,12 @@ class ItemPageDataLoader: PageDataLoader {
 
         val itemPageModel: ItemPageModel = pageModel as ItemPageModel
         itemPageModel.itemName = "silver thing"
-        itemPageModel.dataFinishedBinding()
 
-        //todo: use pageModel.previousModel to get the query info
+
+        if(itemPageModel.mPreviousPageModel!=null) {
+            //TODO: load the data here and put into the model
+        }
+
+        itemPageModel.dataFinishedBinding()
     }
 }

@@ -36,4 +36,7 @@ class TestPage : PageRequired {
         mViewGroup = layout as ViewGroup
     }
 
+    override fun bindDataFinished() {
+        //TODO //To change body of created functions use File | Settings | File Templates.
+    }
 }

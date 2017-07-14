@@ -3,6 +3,7 @@ package hunt.james.sandyrohan.view.pages
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import hunt.james.sandyrohan.R
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.ItemPageModel
@@ -37,10 +38,16 @@ class ItemPage: PageRequired {
                 .pageModelModule(PageModelModule())
                 .build()
 
+        mViewGroup = layout as ViewGroup
 
         pageModelComponent.inject(this)
 
-        mViewGroup = layout as ViewGroup
+        itemPageModel.bindModelToView(this)
 
+    }
+
+    override fun bindDataFinished() {
+        val textView: TextView = mViewGroup.findViewById<TextView>(R.id.item_name)
+        textView.text = itemPageModel.itemName
     }
 }

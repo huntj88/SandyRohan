@@ -34,4 +34,7 @@ class OtherPage: PageRequired {
     }
 
 
+    override fun bindDataFinished() {
+        //TODO: //To change body of created functions use File | Settings | File Templates.
+    }
 }
