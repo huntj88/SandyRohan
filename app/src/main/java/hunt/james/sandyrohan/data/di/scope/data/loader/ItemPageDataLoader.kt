@@ -1,6 +1,7 @@
 package hunt.james.sandyrohan.data.di.scope.data.loader
 
 import hunt.james.sandyrohan.data.ItemPageModel
+import hunt.james.sandyrohan.data.TestPageModel
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
 
 /**
@@ -11,11 +12,10 @@ class ItemPageDataLoader: PageDataLoader {
     override fun loadData(pageModel: PageModel) {
 
         val itemPageModel: ItemPageModel = pageModel as ItemPageModel
-        itemPageModel.itemName = "silver thing"
-
 
         if(itemPageModel.mPreviousPageModel!=null) {
-            //TODO: load the data here and put into the model
+
+            itemPageModel.itemName = (itemPageModel.mPreviousPageModel as TestPageModel).itemName
         }
 
         itemPageModel.dataFinishedBinding()

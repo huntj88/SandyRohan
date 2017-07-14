@@ -12,23 +12,20 @@ import javax.inject.Inject
  */
 class SandyRohanApplication: Application() {
 
-    lateinit var component: AppComponent
-
-    @Inject
-    lateinit var pageModelBuilder: PageModelBuilder
+    object di {
+        lateinit var component: AppComponent
+    }
 
 
     override fun onCreate() {
         super.onCreate()
 
-        component = DaggerAppComponent
+       SandyRohanApplication.di.component = DaggerAppComponent
                 .builder()
                 .pageBuilderModule(PageBuilderModule())
                 .build()
 
-        component.inject(this)
-
-        pageModelBuilder.test()
+        SandyRohanApplication.di.component.inject(this)
     }
 
 

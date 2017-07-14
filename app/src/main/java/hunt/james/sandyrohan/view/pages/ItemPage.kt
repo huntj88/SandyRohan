@@ -7,7 +7,6 @@ import android.widget.TextView
 import hunt.james.sandyrohan.R
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.ItemPageModel
-import hunt.james.sandyrohan.data.di.scope.app.PageModelBuilder
 import hunt.james.sandyrohan.data.di.scope.page.DaggerPageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelModule
@@ -25,7 +24,7 @@ class ItemPage: PageRequired {
     override var mPageID: PageID = PageID.ITEM
 
     @Inject
-    lateinit var itemPageModel: ItemPageModel
+    lateinit var mItemPageModel: ItemPageModel
 
 
     override fun bindLayout(context: Context, adapter: PageRequired.Adapter) {
@@ -34,7 +33,7 @@ class ItemPage: PageRequired {
 
         val pageModelComponent: PageModelComponent = DaggerPageModelComponent
                 .builder()
-                .appComponent((context.applicationContext as SandyRohanApplication).component)
+                .appComponent(SandyRohanApplication.di.component)
                 .pageModelModule(PageModelModule())
                 .build()
 
@@ -42,12 +41,12 @@ class ItemPage: PageRequired {
 
         pageModelComponent.inject(this)
 
-        itemPageModel.bindModelToView(this)
+        mItemPageModel.bindModelToView(this)
 
     }
 
     override fun bindDataFinished() {
         val textView: TextView = mViewGroup.findViewById<TextView>(R.id.item_name)
-        textView.text = itemPageModel.itemName
+        textView.text = mItemPageModel.itemName
     }
 }
