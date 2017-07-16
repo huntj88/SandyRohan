@@ -23,6 +23,7 @@ class SandyRohanApplication : Application() {
                 .builder()
                 .pageBuilderModule(PageBuilderModule())
                 .networkClientModule(NetworkClientModule())
+                .appModule(AppModule(applicationContext))
                 .build()
 
         SandyRohanApplication.di.component.inject(this)

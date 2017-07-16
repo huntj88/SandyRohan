@@ -11,7 +11,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(PageBuilderModule::class, NetworkClientModule::class))
+@Component(modules = arrayOf(PageBuilderModule::class, NetworkClientModule::class, AppModule::class))
 interface AppComponent {
     fun pageModelBuilder(): PageModelBuilder
     fun inject(sandyRohanApplication: SandyRohanApplication)
