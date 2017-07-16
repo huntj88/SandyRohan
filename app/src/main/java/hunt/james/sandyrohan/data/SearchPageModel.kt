@@ -2,25 +2,26 @@ package hunt.james.sandyrohan.data
 
 import hunt.james.sandyrohan.data.di.scope.app.PageModelBuilder
 import hunt.james.sandyrohan.data.di.scope.data.loader.PageDataLoader
-import hunt.james.sandyrohan.data.di.scope.data.loader.TestPageDataLoader
+import hunt.james.sandyrohan.data.di.scope.data.loader.SearchPageDataLoader
+import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
 import hunt.james.sandyrohan.view.pages.util.PageID
 import hunt.james.sandyrohan.view.pages.util.PageRequired
 
 /**
- * Created by James on 7/9/2017.
+ * Created by James on 7/16/2017.
  */
-class TestPageModel(pageModelBuilder: PageModelBuilder): PageModel {
+
+class SearchPageModel(pageModelBuilder: PageModelBuilder): PageModel {
 
     override var mPreviousPageModel: PageModel? = null
-    override var mPageID: PageID = PageID.TEST
+    override var mPageID: PageID = PageID.SEARCH
     override var mPageModelBuilder: PageModelBuilder = pageModelBuilder
     override lateinit var mPageRequired: PageRequired
-    override var mPageDataLoader: PageDataLoader = TestPageDataLoader()
+    override var mPageDataLoader: PageDataLoader = SearchPageDataLoader()
 
-
-    lateinit var itemName: String
-
+    var mSearchString: String = ""
+    lateinit var mResults: ArrayList<ItemSmall>
 
     override fun bindModelToView(pageRequired: PageRequired) {
         mPageRequired = pageRequired
@@ -29,5 +30,10 @@ class TestPageModel(pageModelBuilder: PageModelBuilder): PageModel {
 
     override fun dataFinishedBinding() {
         mPageRequired.bindDataFinished()
+    }
+
+    fun search(searchString: String) {
+        mSearchString = searchString
+        mPageDataLoader.loadData(this)
     }
 }

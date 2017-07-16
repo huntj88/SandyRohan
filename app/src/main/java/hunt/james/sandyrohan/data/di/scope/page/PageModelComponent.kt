@@ -3,6 +3,7 @@ package hunt.james.sandyrohan.data.di.scope.page
 import dagger.Component
 import hunt.james.sandyrohan.data.di.scope.app.AppComponent
 import hunt.james.sandyrohan.view.pages.ItemPage
+import hunt.james.sandyrohan.view.pages.SearchPage
 import hunt.james.sandyrohan.view.pages.TestPage
 
 /**
@@ -14,4 +15,5 @@ import hunt.james.sandyrohan.view.pages.TestPage
 interface PageModelComponent {
     fun inject(itemPage: ItemPage)
     fun inject(testPage: TestPage)
+    fun inject(searchPage: SearchPage)
 }

@@ -9,6 +9,7 @@ import hunt.james.sandyrohan.view.pages.util.PageManager
 import hunt.james.sandyrohan.view.pages.util.SwipeOptionalViewPager
 import kotlinx.android.synthetic.main.activity_single.*
 import com.tbruyelle.rxpermissions2.RxPermissions
+import io.realm.Realm
 
 
 class SingleActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class SingleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Realm.deleteRealm(Realm.getDefaultConfiguration())
         setContentView(R.layout.activity_single)
 
         viewPager = single_view_pager

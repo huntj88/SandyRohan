@@ -20,8 +20,7 @@ import android.os.Environment.DIRECTORY_PICTURES
 import android.os.Environment.getExternalStoragePublicDirectory
 import java.io.*
 import android.media.MediaScannerConnection
-
-
+import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
 
 
 /**
@@ -50,10 +49,9 @@ class ItemPageDataLoader: PageDataLoader {
 
 
             itemPageModel.dataFinishedBinding()
+            //Log.d("realm stuff","begin")
             //getAllItems(itemPageModel)
-            //removeBadItems()
-            //test()
-            //createRealmBackup()
+
         }
 
         //itemPageModel.dataFinishedBinding()
@@ -72,13 +70,19 @@ class ItemPageDataLoader: PageDataLoader {
 
                         val realm: Realm = Realm.getDefaultInstance()
                         realm.executeTransaction {
-
                             realm.insertOrUpdate(items)
 
                         }
 
                         disposable.dispose()
                         itemPageModel.dataFinishedBinding()
+                        Log.d("realm stuff","got items")
+                        removeBadItems()
+                        Log.d("realm stuff","removed bad")
+                        //test()
+                        //createRealmBackup()
+                        makeSmaller()
+                        Log.d("realm stuff","made smaller")
                     }
                 }, { error ->
                     disposable.dispose()
@@ -97,6 +101,25 @@ class ItemPageDataLoader: PageDataLoader {
         realm.executeTransaction {
             bad.deleteAllFromRealm()
         }
+        realm.close()
+    }
+
+
+    fun makeSmaller() {
+        val realm: Realm = Realm.getDefaultInstance()
+        val big: RealmResults<Item> = realm.where(Item::class.java).findAll()
+
+        realm.executeTransaction {
+            for(item in big) {
+                val itemSmall: ItemSmall = ItemSmall()
+                itemSmall.dataID = item.dataID
+                itemSmall.name = item.name!!.toLowerCase()
+                itemSmall.img = item.img
+
+                realm.insertOrUpdate(itemSmall)
+            }
+        }
+
         realm.close()
     }
 

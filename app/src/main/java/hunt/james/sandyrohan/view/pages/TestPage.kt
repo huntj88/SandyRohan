@@ -26,6 +26,7 @@ class TestPage : PageRequired {
     override lateinit var mViewGroup: ViewGroup
     override lateinit var mAdapter: PageRequired.Adapter
     override var mPageID: PageID = PageID.TEST
+    override var layoutBound: Boolean = false
 
     @Inject
     lateinit var mTestPageModel: TestPageModel
@@ -34,13 +35,16 @@ class TestPage : PageRequired {
         this.mAdapter = adapter
         val layout = LayoutInflater.from(context).inflate(R.layout.page_test, null, false)
 
-
         RxView.clicks(layout.button)
                 .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .subscribe({adapter.addPage(PageID.OTHER)})
         RxView.clicks(layout.page_item)
                 .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .subscribe({adapter.addPage(PageID.ITEM)})
+
+        RxView.clicks(layout.button3)
+                .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .subscribe({adapter.addPage(PageID.SEARCH)})
 
         mViewGroup = layout as ViewGroup
 

@@ -10,6 +10,9 @@ interface PageRequired {
     var mViewGroup: ViewGroup
     var mAdapter: Adapter
     var mPageID: PageID
+    var layoutBound: Boolean
+
+
     fun bindLayout(context: Context, adapter: Adapter)
     fun bindDataFinished()
 

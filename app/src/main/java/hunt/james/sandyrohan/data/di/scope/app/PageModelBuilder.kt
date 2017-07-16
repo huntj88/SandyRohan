@@ -12,13 +12,17 @@ class PageModelBuilder {
 
     var modelStack: Stack<PageModel> = Stack()
 
-    fun buildModel(pageModel: PageModel, pageDataLoader: PageDataLoader) {
+    fun buildModel(pageModel: PageModel) {
 
         if(modelStack.size>0)
             pageModel.mPreviousPageModel = modelStack.peek()
 
 
         modelStack.push(pageModel)
-        pageDataLoader.loadData(pageModel)
+        pageModel.mPageDataLoader.loadData(pageModel)
+    }
+
+    fun removeTop() {
+        modelStack.pop()
     }
 }

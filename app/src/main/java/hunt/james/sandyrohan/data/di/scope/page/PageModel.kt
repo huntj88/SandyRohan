@@ -1,6 +1,7 @@
 package hunt.james.sandyrohan.data.di.scope.page
 
 import hunt.james.sandyrohan.data.di.scope.app.PageModelBuilder
+import hunt.james.sandyrohan.data.di.scope.data.loader.PageDataLoader
 import hunt.james.sandyrohan.view.pages.util.PageID
 import hunt.james.sandyrohan.view.pages.util.PageRequired
 
@@ -12,6 +13,7 @@ interface PageModel {
     var mPageModelBuilder: PageModelBuilder
     var mPageID: PageID
     var mPageRequired: PageRequired
+    var mPageDataLoader: PageDataLoader
 
     fun bindModelToView(pageRequired: PageRequired)
     fun dataFinishedBinding()

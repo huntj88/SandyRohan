@@ -22,7 +22,8 @@ class ItemPage: PageRequired {
     override lateinit var mViewGroup: ViewGroup
     override lateinit var mAdapter: PageRequired.Adapter
     override var mPageID: PageID = PageID.ITEM
-
+    override var layoutBound: Boolean = false
+    
     @Inject
     lateinit var mItemPageModel: ItemPageModel
 

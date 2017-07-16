@@ -2,6 +2,7 @@ package hunt.james.sandyrohan.data
 
 import hunt.james.sandyrohan.data.di.scope.app.PageModelBuilder
 import hunt.james.sandyrohan.data.di.scope.data.loader.ItemPageDataLoader
+import hunt.james.sandyrohan.data.di.scope.data.loader.PageDataLoader
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
 import hunt.james.sandyrohan.view.pages.util.PageID
 import hunt.james.sandyrohan.view.pages.util.PageRequired
@@ -11,16 +12,18 @@ import hunt.james.sandyrohan.view.pages.util.PageRequired
  */
 class ItemPageModel(pageModelBuilder: PageModelBuilder): PageModel {
 
-    override var mPreviousPageModel: PageModel? = null //TODO: make this not null. only first page should be null, but its null right now because im using it to test
+    override var mPreviousPageModel: PageModel? = null
     override var mPageID: PageID = PageID.ITEM
     override var mPageModelBuilder: PageModelBuilder = pageModelBuilder
     override lateinit var mPageRequired: PageRequired
+    override var mPageDataLoader: PageDataLoader = ItemPageDataLoader()
+
 
     lateinit var itemName: String
 
     override fun bindModelToView(pageRequired: PageRequired) {
         mPageRequired = pageRequired
-        mPageModelBuilder.buildModel(this, ItemPageDataLoader())
+        mPageModelBuilder.buildModel(this)
     }
 
     override fun dataFinishedBinding() {

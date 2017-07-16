@@ -2,6 +2,7 @@ package hunt.james.sandyrohan.view.pages.util
 
 import hunt.james.sandyrohan.view.pages.ItemPage
 import hunt.james.sandyrohan.view.pages.OtherPage
+import hunt.james.sandyrohan.view.pages.SearchPage
 import hunt.james.sandyrohan.view.pages.TestPage
 
 /**
@@ -21,6 +22,11 @@ enum class PageID(val pageID: Int) : PageBuilder {
     ITEM(2) {
         override fun build(): PageRequired {
             return ItemPage()
+        }
+    },
+    SEARCH(3) {
+        override fun build(): PageRequired {
+            return SearchPage()
         }
     }
 }

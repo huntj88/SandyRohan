@@ -4,6 +4,7 @@ import dagger.Component
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.di.scope.app.network.NetworkClientModule
 import hunt.james.sandyrohan.data.di.scope.data.loader.ItemPageDataLoader
+import hunt.james.sandyrohan.view.pages.util.PageAdapter
 import javax.inject.Singleton
 
 /**
@@ -15,5 +16,6 @@ import javax.inject.Singleton
 interface AppComponent {
     fun pageModelBuilder(): PageModelBuilder
     fun inject(sandyRohanApplication: SandyRohanApplication)
+    fun inject(pageAdapter: PageAdapter)
     fun inject(itemPageDataLoader: ItemPageDataLoader)
 }

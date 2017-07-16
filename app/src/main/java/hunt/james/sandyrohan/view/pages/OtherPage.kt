@@ -18,6 +18,7 @@ class OtherPage: PageRequired {
     override lateinit var mViewGroup: ViewGroup
     override lateinit var mAdapter: PageRequired.Adapter
     override var mPageID: PageID = PageID.OTHER
+    override var layoutBound: Boolean = false
 
     override fun bindLayout(context: Context, adapter: PageRequired.Adapter) {
 
