@@ -6,63 +6,70 @@ package hunt.james.sandyrohan.data.di.scope.data.loader.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
+import io.realm.annotations.Index
+import io.realm.annotations.PrimaryKey
 
-class Item {
+open class Item: RealmObject() {
 
+    @PrimaryKey
     @SerializedName("data_id")
     @Expose
-    var dataId: Int? = null
+    open var dataID: Int? = null
 
+    @Index
     @SerializedName("name")
     @Expose
-    var name: String? = null
+    open var name: String? = null
 
     @SerializedName("rarity")
     @Expose
-    var rarity: Int? = null
+    open var rarity: Int? = null
 
     @SerializedName("restriction_level")
     @Expose
-    var restrictionLevel: Int? = null
+    open var restrictionLevel: Int? = null
 
     @SerializedName("img")
     @Expose
-    var img: String? = null
+    open var img: String? = null
 
     @SerializedName("type_id")
     @Expose
-    var typeId: Int? = null
+    open var typeId: Int? = null
 
     @SerializedName("sub_type_id")
     @Expose
-    var subTypeId: Int? = null
+    open var subTypeId: Int? = null
 
     @SerializedName("price_last_changed")
     @Expose
-    var priceLastChanged: String? = null
+    open var priceLastChanged: String? = null
 
+    @Index
     @SerializedName("max_offer_unit_price")
     @Expose
-    var maxOfferUnitPrice: Int? = null
+    open var maxOfferUnitPrice: Int? = null
 
+    @Index
     @SerializedName("min_sale_unit_price")
     @Expose
-    var minSaleUnitPrice: Int? = null
+    open var minSaleUnitPrice: Int? = null
 
     @SerializedName("offer_availability")
     @Expose
-    var offerAvailability: Int? = null
+    open var offerAvailability: Int? = null
 
     @SerializedName("sale_availability")
     @Expose
-    var saleAvailability: Int? = null
+    open var saleAvailability: Int? = null
 
     @SerializedName("sale_price_change_last_hour")
     @Expose
-    var salePriceChangeLastHour: Int? = null
+    open var salePriceChangeLastHour: Int? = null
 
     @SerializedName("offer_price_change_last_hour")
     @Expose
-    var offerPriceChangeLastHour: Int? = null
+    open var offerPriceChangeLastHour: Int? = null
 
 }

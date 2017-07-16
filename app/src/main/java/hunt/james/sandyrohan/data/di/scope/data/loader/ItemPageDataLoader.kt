@@ -10,6 +10,7 @@ import hunt.james.sandyrohan.data.di.scope.page.PageModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import io.realm.Realm
 import javax.inject.Inject
 
 /**
@@ -31,8 +32,10 @@ class ItemPageDataLoader: PageDataLoader {
 
             itemPageModel.itemName = (itemPageModel.mPreviousPageModel as TestPageModel).itemName
 
-            itemPageModel.dataFinishedBinding()
-            //getAllItems(itemPageModel)
+
+
+            //itemPageModel.dataFinishedBinding()
+            getAllItems(itemPageModel)
         }
 
         //itemPageModel.dataFinishedBinding()
@@ -47,6 +50,15 @@ class ItemPageDataLoader: PageDataLoader {
                     if(result.results!=null) {
                         val items: List<Item> = result.results as List<Item>
                         Log.d("Result", "There are ${items[0].name} Java developers in Lagos")
+
+
+                        val realm: Realm = Realm.getDefaultInstance()
+                        realm.executeTransaction {
+
+                            realm.insertOrUpdate(items)
+
+                        }
+
                         disposable.dispose()
                         itemPageModel.dataFinishedBinding()
                     }
