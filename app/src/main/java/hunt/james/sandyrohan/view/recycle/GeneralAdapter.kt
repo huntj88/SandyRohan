@@ -2,13 +2,14 @@ package hunt.james.sandyrohan.view.recycle
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import hunt.james.sandyrohan.view.pages.util.ViewHolderRequired
+import hunt.james.sandyrohan.view.pages.util.PageRequired
 
 /**
  * Created by James on 7/16/2017.
  */
-class GeneralAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class GeneralAdapter(callback: PageRequired.CallBack): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    val mCallBack: PageRequired.CallBack = callback
     var cells: MutableList<ViewHolderData> = ArrayList()
 
     fun addData(data: List<ViewHolderData>, offset: Int)  //used to add data but retain the top cells. offset is how many top cells retained
@@ -36,7 +37,7 @@ class GeneralAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val viewHolder: ViewHolderRequired = holder as ViewHolderRequired
-        viewHolder.bindData(cells[position])
+        viewHolder.bindData(cells[position],mCallBack)
     }
 
     override fun getItemViewType(position: Int): Int {

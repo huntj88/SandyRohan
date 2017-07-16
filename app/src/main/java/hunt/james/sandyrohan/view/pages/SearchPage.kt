@@ -1,7 +1,7 @@
 package hunt.james.sandyrohan.view.pages
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,12 +10,14 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import hunt.james.sandyrohan.R
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.SearchPageModel
+import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
 import hunt.james.sandyrohan.data.di.scope.page.DaggerPageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelModule
 import hunt.james.sandyrohan.view.pages.util.PageID
 import hunt.james.sandyrohan.view.pages.util.PageRequired
 import hunt.james.sandyrohan.view.recycle.GeneralAdapter
+import hunt.james.sandyrohan.view.recycle.ViewHolderData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.page_search.view.*
 import java.util.concurrent.TimeUnit
@@ -25,7 +27,7 @@ import javax.inject.Inject
  * Created by James on 7/16/2017.
  */
 
-class SearchPage : PageRequired {
+class SearchPage : PageRequired, PageRequired.CallBack {
 
     override lateinit var mViewGroup: ViewGroup
     override lateinit var mAdapter: PageRequired.Adapter
@@ -35,7 +37,7 @@ class SearchPage : PageRequired {
     @Inject
     lateinit var mSearchPageModel: SearchPageModel
 
-    var generalAdapter: GeneralAdapter = GeneralAdapter()
+    var generalAdapter: GeneralAdapter = GeneralAdapter(this)
 
 
     override fun bindLayout(context: Context, adapter: PageRequired.Adapter) {
@@ -43,7 +45,7 @@ class SearchPage : PageRequired {
         val layout = LayoutInflater.from(context).inflate(R.layout.page_search, null, false)
 
         val recycle: RecyclerView = layout.search_results
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context,1)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         recycle.layoutManager = layoutManager
         recycle.adapter  = generalAdapter
 
@@ -74,5 +76,10 @@ class SearchPage : PageRequired {
         generalAdapter.addData(mSearchPageModel.mResults,0)
         //val textView: TextView = mViewGroup.findViewById<TextView>(R.id.item_name)
         //textView.text = mItemPageModel.itemName
+    }
+
+    override fun handleCallBack(viewHolderData: ViewHolderData) {
+        mSearchPageModel.selectedItem = viewHolderData as ItemSmall
+        mAdapter.addPage(PageID.ITEM)
     }
 }

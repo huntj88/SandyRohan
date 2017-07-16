@@ -1,11 +1,9 @@
 package hunt.james.sandyrohan.view.recycle
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import hunt.james.sandyrohan.R
-import hunt.james.sandyrohan.view.pages.util.ViewHolderRequired
 import hunt.james.sandyrohan.view.recycle.viewHolder.SearchViewHolder
 
 

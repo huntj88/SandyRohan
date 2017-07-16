@@ -39,7 +39,7 @@ class SandyRohanApplication : Application() {
         SandyRohanApplication.di.component.inject(this)
 
         //getAllData()
-        //deleteBigItems()
+        deleteBigItems()
 
     }
 

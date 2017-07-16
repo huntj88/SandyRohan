@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.ItemPageModel
-import hunt.james.sandyrohan.data.TestPageModel
 import hunt.james.sandyrohan.data.di.scope.app.network.UnofficialGWService
 import hunt.james.sandyrohan.data.di.scope.data.loader.models.Item
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
@@ -12,15 +11,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
-import io.realm.RealmResults
 import javax.inject.Inject
-import android.content.Context.MODE_PRIVATE
-import android.os.Environment
-import android.os.Environment.DIRECTORY_PICTURES
-import android.os.Environment.getExternalStoragePublicDirectory
-import java.io.*
-import android.media.MediaScannerConnection
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
+import hunt.james.sandyrohan.data.SearchPageModel
 
 
 /**
@@ -44,7 +36,7 @@ class ItemPageDataLoader: PageDataLoader {
 
         if(itemPageModel.mPreviousPageModel!=null) {
 
-            itemPageModel.itemName = (itemPageModel.mPreviousPageModel as TestPageModel).itemName
+            itemPageModel.itemName = (itemPageModel.mPreviousPageModel as SearchPageModel).selectedItem.name!!
 
             getItem(itemPageModel)
 
@@ -55,7 +47,9 @@ class ItemPageDataLoader: PageDataLoader {
 
         val realm: Realm = Realm.getDefaultInstance()
 
-        val item: Item? = realm.where(Item::class.java).equalTo("dataID",19703).findFirst()
+        val dataID = (itemPageModel.mPreviousPageModel  as SearchPageModel).selectedItem.dataID
+
+        val item: Item? = realm.where(Item::class.java).equalTo("dataID",dataID).findFirst()
 
         if(item != null && !item.isExpired()) {
             Log.d("load","used cache")
@@ -63,13 +57,13 @@ class ItemPageDataLoader: PageDataLoader {
             itemPageModel.dataFinishedBinding()
         } else {
             Log.d("load","used network")
-            getItemFromNetwork(itemPageModel)
+            getItemFromNetwork(itemPageModel, dataID!!)
         }
 
     }
 
-    fun getItemFromNetwork(itemPageModel: ItemPageModel) {
-        disposable = service.getSpecificItem(19703).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
+    fun getItemFromNetwork(itemPageModel: ItemPageModel, dataID: Int) {
+        disposable = service.getSpecificItem(dataID).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
 
