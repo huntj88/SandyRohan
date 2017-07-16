@@ -19,7 +19,6 @@ class SingleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Realm.deleteRealm(Realm.getDefaultConfiguration())
         setContentView(R.layout.activity_single)
 
         viewPager = single_view_pager

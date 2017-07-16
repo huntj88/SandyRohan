@@ -8,7 +8,7 @@ package hunt.james.sandyrohan.data.di.scope.data.loader.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Items {
+class ManyItems {
 
     @SerializedName("count")
     @Expose

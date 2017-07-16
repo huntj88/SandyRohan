@@ -46,126 +46,51 @@ class ItemPageDataLoader: PageDataLoader {
 
             itemPageModel.itemName = (itemPageModel.mPreviousPageModel as TestPageModel).itemName
 
-
-
-            itemPageModel.dataFinishedBinding()
-            //Log.d("realm stuff","begin")
-            //getAllItems(itemPageModel)
+            getItem(itemPageModel)
 
         }
-
-        //itemPageModel.dataFinishedBinding()
     }
 
-    fun getAllItems(itemPageModel: ItemPageModel) {
-        disposable = service.getAllItems().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
+    fun getItem(itemPageModel: ItemPageModel) {
+
+        val realm: Realm = Realm.getDefaultInstance()
+
+        val item: Item? = realm.where(Item::class.java).equalTo("dataID",19703).findFirst()
+
+        if(item != null && !item.isExpired()) {
+            Log.d("load","used cache")
+            itemPageModel.itemName = item.name!!
+            itemPageModel.dataFinishedBinding()
+        } else {
+            Log.d("load","used network")
+            getItemFromNetwork(itemPageModel)
+        }
+
+    }
+
+    fun getItemFromNetwork(itemPageModel: ItemPageModel) {
+        disposable = service.getSpecificItem(19703).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
 
                     Log.d("result",result.toString())
-                    if(result.results!=null) {
-                        val items: List<Item> = result.results as List<Item>
-                        Log.d("Result", "There are ${items[0].name} Java developers in Lagos")
-
+                    if(result.result!=null) {
+                        val item: Item = result.result as Item
 
                         val realm: Realm = Realm.getDefaultInstance()
                         realm.executeTransaction {
-                            realm.insertOrUpdate(items)
+                            realm.insertOrUpdate(item)
 
                         }
 
+                        itemPageModel.itemName = item.name!!
+
                         disposable.dispose()
                         itemPageModel.dataFinishedBinding()
-                        Log.d("realm stuff","got items")
-                        removeBadItems()
-                        Log.d("realm stuff","removed bad")
-                        //test()
-                        //createRealmBackup()
-                        makeSmaller()
-                        Log.d("realm stuff","made smaller")
                     }
                 }, { error ->
                     disposable.dispose()
                     error.printStackTrace()
                 })
-
-    }
-
-    fun removeBadItems() {
-
-
-        val realm: Realm = Realm.getDefaultInstance()
-        val bad: RealmResults<Item> = realm.where(Item::class.java).equalTo("maxOfferUnitPrice",0).or().equalTo("minSaleUnitPrice",0).findAll()
-        Log.d("removed",bad.count().toString())
-
-        realm.executeTransaction {
-            bad.deleteAllFromRealm()
-        }
-        realm.close()
-    }
-
-
-    fun makeSmaller() {
-        val realm: Realm = Realm.getDefaultInstance()
-        val big: RealmResults<Item> = realm.where(Item::class.java).findAll()
-
-        realm.executeTransaction {
-            for(item in big) {
-                val itemSmall: ItemSmall = ItemSmall()
-                itemSmall.dataID = item.dataID
-                itemSmall.name = item.name!!.toLowerCase()
-                itemSmall.img = item.img
-
-                realm.insertOrUpdate(itemSmall)
-            }
-        }
-
-        realm.close()
-    }
-
-    fun test() {
-        val realm: Realm = Realm.getDefaultInstance()
-        realm.close()
-
-        Log.d("realm path",realm.path)
-
-    }
-
-
-    fun createRealmBackup() {
-        // Create a path where we will place our picture in the user's
-        // public pictures directory.  Note that you should be careful about
-        // what you place here, since the user often manages these files.  For
-        // pictures and other media owned by the application, consider
-        // Context.getExternalMediaDir().
-        val path = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES)
-        val file = File(path, "backup.realm")
-
-
-        val realmFile = File(context.filesDir.path,"default.realm")
-
-        try {
-            // Make sure the Pictures directory exists.
-            path.mkdirs()
-            val fileInputStream = FileInputStream(realmFile)
-            val fileOutputStream = FileOutputStream(
-                    file)
-
-
-            val buffer = ByteArray(512)
-            var bufferSize: Int = fileInputStream.read(buffer)
-            while (bufferSize > 0) {
-                fileOutputStream.write(buffer, 0, bufferSize)
-                bufferSize = fileInputStream.read(buffer)
-            }
-            fileInputStream.close()
-            fileOutputStream.close()
-
-
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-        }
-
     }
 }

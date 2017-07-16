@@ -35,14 +35,11 @@ class TestPage : PageRequired {
         this.mAdapter = adapter
         val layout = LayoutInflater.from(context).inflate(R.layout.page_test, null, false)
 
-        RxView.clicks(layout.button)
-                .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .subscribe({adapter.addPage(PageID.OTHER)})
         RxView.clicks(layout.page_item)
                 .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .subscribe({adapter.addPage(PageID.ITEM)})
 
-        RxView.clicks(layout.button3)
+        RxView.clicks(layout.button)
                 .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .subscribe({adapter.addPage(PageID.SEARCH)})
 
@@ -64,7 +61,5 @@ class TestPage : PageRequired {
     override fun bindDataFinished() {
 
         mViewGroup.findViewById<Button>(R.id.page_item).text = mTestPageModel.itemName
-
-        //TODO //To change body of created functions use File | Settings | File Templates.
     }
 }

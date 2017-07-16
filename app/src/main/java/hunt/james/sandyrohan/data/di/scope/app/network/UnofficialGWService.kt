@@ -1,9 +1,10 @@
 package hunt.james.sandyrohan.data.di.scope.app.network
 
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.Items
+import hunt.james.sandyrohan.data.di.scope.data.loader.models.ManyItems
+import hunt.james.sandyrohan.data.di.scope.data.loader.models.SingleItem
 import io.reactivex.Observable
 import retrofit2.http.GET
-
+import retrofit2.http.Path
 
 
 /**
@@ -12,5 +13,8 @@ import retrofit2.http.GET
 interface UnofficialGWService {
 
     @GET("/api/v0.9/json/all-items/all")
-    fun getAllItems(): Observable<Items>
+    fun getAllItems(): Observable<ManyItems>
+
+    @GET("/api/v0.9/json/item/{dataID}")
+    fun getSpecificItem(@Path(value = "dataID") dataID: Int): Observable<SingleItem>
 }

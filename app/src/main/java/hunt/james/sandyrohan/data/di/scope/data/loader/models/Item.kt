@@ -72,4 +72,15 @@ open class Item: RealmObject() {
     @Expose
     open var offerPriceChangeLastHour: Int? = null
 
+    open var created: Long = System.currentTimeMillis()
+
+    open fun isExpired(): Boolean {
+        val fiveMin: Long = 1 * 60 * 1000
+        if(System.currentTimeMillis() - fiveMin > created) {
+            return true
+        }
+
+        return false
+    }
+
 }
