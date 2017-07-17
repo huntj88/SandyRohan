@@ -10,7 +10,7 @@ import hunt.james.sandyrohan.view.pages.util.PageRequired
 /**
  * Created by James on 7/10/2017.
  */
-class ItemPageModel(pageModelBuilder: PageModelBuilder): PageModel {
+class ItemPageModel(pageModelBuilder: PageModelBuilder): PageModel, PageModel.PrelimData {
 
     override var mPreviousPageModel: PageModel? = null
     override var mPageID: PageID = PageID.ITEM
@@ -28,5 +28,9 @@ class ItemPageModel(pageModelBuilder: PageModelBuilder): PageModel {
 
     override fun dataFinishedBinding() {
         mPageRequired.bindDataFinished()
+    }
+
+    override fun preDataFinishedBinding() {
+        (mPageRequired as PageRequired.PrelimData).preDataFinishedBinding()
     }
 }

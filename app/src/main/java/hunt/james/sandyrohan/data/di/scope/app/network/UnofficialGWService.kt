@@ -1,7 +1,7 @@
 package hunt.james.sandyrohan.data.di.scope.app.network
 
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ManyItems
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.SingleItem
+import hunt.james.sandyrohan.data.di.scope.data.models.ManyItems
+import hunt.james.sandyrohan.data.di.scope.data.models.SingleItem
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

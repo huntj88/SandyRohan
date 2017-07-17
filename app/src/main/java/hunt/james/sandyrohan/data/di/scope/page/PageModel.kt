@@ -17,4 +17,8 @@ interface PageModel {
 
     fun bindModelToView(pageRequired: PageRequired)
     fun dataFinishedBinding()
+
+    interface PrelimData {
+        fun preDataFinishedBinding()
+    }
 }

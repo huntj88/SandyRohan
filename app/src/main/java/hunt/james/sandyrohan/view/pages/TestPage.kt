@@ -35,10 +35,6 @@ class TestPage : PageRequired {
         this.mAdapter = adapter
         val layout = LayoutInflater.from(context).inflate(R.layout.page_test, null, false)
 
-        /*RxView.clicks(layout.page_item)
-                .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .subscribe({adapter.addPage(PageID.ITEM)})*/
-
         RxView.clicks(layout.button)
                 .throttleFirst(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .subscribe({adapter.addPage(PageID.SEARCH)})

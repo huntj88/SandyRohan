@@ -10,7 +10,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import hunt.james.sandyrohan.R
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.SearchPageModel
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
+import hunt.james.sandyrohan.data.di.scope.data.models.ItemSmall
 import hunt.james.sandyrohan.data.di.scope.page.DaggerPageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelModule

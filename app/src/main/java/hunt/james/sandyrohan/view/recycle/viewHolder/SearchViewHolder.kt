@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
+import hunt.james.sandyrohan.data.di.scope.data.models.ItemSmall
 import hunt.james.sandyrohan.view.pages.util.PageRequired
 import hunt.james.sandyrohan.view.recycle.ViewHolderRequired
 import hunt.james.sandyrohan.view.recycle.ViewHolderData

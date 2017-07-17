@@ -1,7 +1,7 @@
 package hunt.james.sandyrohan.data.di.scope.data.loader
 
 import hunt.james.sandyrohan.data.SearchPageModel
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
+import hunt.james.sandyrohan.data.di.scope.data.models.ItemSmall
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
 import io.realm.Realm
 import io.realm.RealmResults

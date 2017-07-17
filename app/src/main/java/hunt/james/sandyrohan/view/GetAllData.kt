@@ -2,8 +2,8 @@ package hunt.james.sandyrohan.view
 
 import android.util.Log
 import hunt.james.sandyrohan.data.di.scope.app.network.UnofficialGWService
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.Item
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
+import hunt.james.sandyrohan.data.di.scope.data.models.Item
+import hunt.james.sandyrohan.data.di.scope.data.models.ItemSmall
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -74,7 +74,8 @@ class GetAllData(service: UnofficialGWService) {
             for(item in big) {
                 val itemSmall: ItemSmall = ItemSmall()
                 itemSmall.dataID = item.dataID
-                itemSmall.name = item.name!!.toLowerCase()
+                itemSmall.nameLowerCase = item.name!!.toLowerCase()
+                itemSmall.name = item.name!!
                 itemSmall.img = item.img
 
                 realm.insertOrUpdate(itemSmall)

@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.data.di.scope.data.loader.models
+package hunt.james.sandyrohan.data.di.scope.data.models
 
 import hunt.james.sandyrohan.view.recycle.ViewHolderData
 import hunt.james.sandyrohan.view.recycle.ViewHolderEnum
@@ -14,6 +14,8 @@ open class ItemSmall : RealmObject(), ViewHolderData {
     open var dataID: Int? = null
 
     @PrimaryKey
+    open var nameLowerCase: String? = null
+
     open var name: String? = null
 
     open var img: String? = null

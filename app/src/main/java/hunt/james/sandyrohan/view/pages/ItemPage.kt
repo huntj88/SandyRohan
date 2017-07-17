@@ -12,18 +12,19 @@ import hunt.james.sandyrohan.data.di.scope.page.PageModelComponent
 import hunt.james.sandyrohan.data.di.scope.page.PageModelModule
 import hunt.james.sandyrohan.view.pages.util.PageID
 import hunt.james.sandyrohan.view.pages.util.PageRequired
+import kotlinx.android.synthetic.main.page_item_header.view.*
 import javax.inject.Inject
 
 /**
  * Created by James on 7/8/2017.
  */
-class ItemPage: PageRequired {
+class ItemPage: PageRequired, PageRequired.PrelimData {
 
     override lateinit var mViewGroup: ViewGroup
     override lateinit var mAdapter: PageRequired.Adapter
     override var mPageID: PageID = PageID.ITEM
     override var layoutBound: Boolean = false
-    
+
     @Inject
     lateinit var mItemPageModel: ItemPageModel
 
@@ -46,8 +47,11 @@ class ItemPage: PageRequired {
 
     }
 
+    override fun preDataFinishedBinding() {
+        mViewGroup.item_name.text = mItemPageModel.itemName
+    }
+
     override fun bindDataFinished() {
-        val textView: TextView = mViewGroup.findViewById<TextView>(R.id.item_name)
-        textView.text = mItemPageModel.itemName
+        mViewGroup.item_name.text = mItemPageModel.itemName
     }
 }

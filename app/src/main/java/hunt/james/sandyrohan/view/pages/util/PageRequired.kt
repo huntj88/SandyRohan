@@ -17,6 +17,11 @@ interface PageRequired {
     fun bindLayout(context: Context, adapter: Adapter)
     fun bindDataFinished()
 
+
+    interface PrelimData {
+        fun preDataFinishedBinding()
+    }
+
     interface Adapter{
         fun addPage(pageID: PageID)
     }

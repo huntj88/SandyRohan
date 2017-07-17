@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.data.di.scope.data.loader.models
+package hunt.james.sandyrohan.data.di.scope.data.models
 
 /**
  * Created by James on 7/14/2017.

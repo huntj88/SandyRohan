@@ -1,4 +1,4 @@
-package hunt.james.sandyrohan.data.di.scope.data.loader.models
+package hunt.james.sandyrohan.data.di.scope.data.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

@@ -5,7 +5,7 @@ import android.util.Log
 import hunt.james.sandyrohan.SandyRohanApplication
 import hunt.james.sandyrohan.data.ItemPageModel
 import hunt.james.sandyrohan.data.di.scope.app.network.UnofficialGWService
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.Item
+import hunt.james.sandyrohan.data.di.scope.data.models.Item
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -47,7 +47,8 @@ class ItemPageDataLoader: PageDataLoader {
 
         val realm: Realm = Realm.getDefaultInstance()
 
-        val dataID = (itemPageModel.mPreviousPageModel  as SearchPageModel).selectedItem.dataID
+        val previousModel = itemPageModel.mPreviousPageModel as SearchPageModel
+        val dataID = previousModel.selectedItem.dataID
 
         val item: Item? = realm.where(Item::class.java).equalTo("dataID",dataID).findFirst()
 
@@ -57,6 +58,8 @@ class ItemPageDataLoader: PageDataLoader {
             itemPageModel.dataFinishedBinding()
         } else {
             Log.d("load","used network")
+            itemPageModel.itemName = previousModel.selectedItem.name!!
+            itemPageModel.preDataFinishedBinding()
             getItemFromNetwork(itemPageModel, dataID!!)
         }
 

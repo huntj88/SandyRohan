@@ -5,7 +5,7 @@ import android.util.Log
 import hunt.james.sandyrohan.data.di.scope.app.*
 import hunt.james.sandyrohan.data.di.scope.app.network.NetworkClientModule
 import hunt.james.sandyrohan.data.di.scope.app.network.UnofficialGWService
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.Item
+import hunt.james.sandyrohan.data.di.scope.data.models.Item
 import hunt.james.sandyrohan.view.GetAllData
 import io.realm.Realm
 import io.realm.RealmResults

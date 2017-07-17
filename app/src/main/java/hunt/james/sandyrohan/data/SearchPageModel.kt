@@ -3,8 +3,7 @@ package hunt.james.sandyrohan.data
 import hunt.james.sandyrohan.data.di.scope.app.PageModelBuilder
 import hunt.james.sandyrohan.data.di.scope.data.loader.PageDataLoader
 import hunt.james.sandyrohan.data.di.scope.data.loader.SearchPageDataLoader
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.Item
-import hunt.james.sandyrohan.data.di.scope.data.loader.models.ItemSmall
+import hunt.james.sandyrohan.data.di.scope.data.models.ItemSmall
 import hunt.james.sandyrohan.data.di.scope.page.PageModel
 import hunt.james.sandyrohan.view.pages.util.PageID
 import hunt.james.sandyrohan.view.pages.util.PageRequired
